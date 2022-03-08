@@ -181,6 +181,7 @@ class _AddKasMasukScreenState extends State<AddKasMasukScreen> {
                                     Container(
                                       height: 40,
                                       decoration: BoxDecoration(
+                                        color: Colors.black.withAlpha(30),
                                         border: Border.all(color: GreyColor),
                                         borderRadius: BorderRadius.circular(5),
                                       ),
@@ -189,7 +190,7 @@ class _AddKasMasukScreenState extends State<AddKasMasukScreen> {
                                       child: TextFormField(
                                         controller: kasmasukController
                                             .nobuktiController,
-                                        readOnly: widget.isModeEdit,
+                                        readOnly: true,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(
                                               top: 18, bottom: 18),
@@ -310,7 +311,7 @@ class _AddKasMasukScreenState extends State<AddKasMasukScreen> {
                                       child: TextFormField(
                                         controller:
                                             kasmasukController.bacnoController,
-                                        readOnly: widget.isModeEdit,
+                                        readOnly: true,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(
                                               top: 18, bottom: 18),
@@ -430,7 +431,7 @@ class _AddKasMasukScreenState extends State<AddKasMasukScreen> {
                                       child: TextFormField(
                                         controller: kasmasukController
                                             .keteranganController,
-                                        // readOnly: widget.isModeEdit,
+                                        // readOnly: true,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(
                                               top: 18, bottom: 18),

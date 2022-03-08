@@ -8,7 +8,7 @@ import 'package:flutterpj/controller/transaksi/bankmasuk_controller.dart';
 import 'package:flutterpj/view/base_widget/notif_hapus.dart';
 import 'package:flutterpj/view/base_widget/toast.dart';
 import 'package:flutterpj/view/transaksi/bankmasuk/add_bankmasuk_screen.dart';
-import 'package:flutterpj/view/transaksi/bankmasuk/widget/bankmasuk_card.dart';
+import 'package:flutterpj/view/transaksi/bankmasuk/bankmasuk_card.dart';
 import 'package:provider/provider.dart';
 
 import 'widget/filter_tanggal.dart';

@@ -9,7 +9,7 @@ import 'package:flutterpj/controller/transaksi/bankkeluar_controller.dart';
 import 'package:flutterpj/model/data_account.dart';
 import 'package:flutterpj/view/transaksi/bankkeluar/widget/pilih_account.dart';
 import 'package:flutterpj/view/base_widget/save_success.dart';
-import 'package:flutterpj/view/transaksi/bankkeluar/widget/add_bankkeluar_card.dart';
+import 'package:flutterpj/view/transaksi/bankkeluar/add_bankkeluar_card.dart';
 import 'package:provider/provider.dart';
 
 class AddBankKeluarScreen extends StatefulWidget {
@@ -181,6 +181,7 @@ class _AddBankKeluarScreenState extends State<AddBankKeluarScreen> {
                                     Container(
                                       height: 40,
                                       decoration: BoxDecoration(
+                                        color: Colors.black.withAlpha(30),
                                         border: Border.all(color: GreyColor),
                                         borderRadius: BorderRadius.circular(5),
                                       ),
@@ -189,7 +190,7 @@ class _AddBankKeluarScreenState extends State<AddBankKeluarScreen> {
                                       child: TextFormField(
                                         controller: bankkeluarController
                                             .nobuktiController,
-                                        readOnly: widget.isModeEdit,
+                                        readOnly: true,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(
                                               top: 18, bottom: 18),
@@ -312,7 +313,7 @@ class _AddBankKeluarScreenState extends State<AddBankKeluarScreen> {
                                       child: TextFormField(
                                         controller: bankkeluarController
                                             .bacnoController,
-                                        readOnly: widget.isModeEdit,
+                                        readOnly: true,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(
                                               top: 18, bottom: 18),
@@ -432,7 +433,7 @@ class _AddBankKeluarScreenState extends State<AddBankKeluarScreen> {
                                       child: TextFormField(
                                         controller: bankkeluarController
                                             .keteranganController,
-                                        // readOnly: widget.isModeEdit,
+                                        // readOnly: true,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(
                                               top: 18, bottom: 18),

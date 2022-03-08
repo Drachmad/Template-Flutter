@@ -20,9 +20,6 @@ import 'package:flutterpj/controller/transaksi/kaskeluar_controller.dart';
 import 'package:flutterpj/controller/transaksi/bankmasuk_controller.dart';
 import 'package:flutterpj/controller/transaksi/bankkeluar_controller.dart';
 import 'package:flutterpj/controller/transaksi/memo_controller.dart';
-import 'package:flutterpj/controller/transaksi/harian_controller.dart';
-import 'package:flutterpj/controller/transaksi/borongan_controller.dart';
-import 'package:flutterpj/controller/transaksi/kik_jahit_controller.dart';
 import 'package:flutterpj/controller/home_controller.dart';
 import 'package:flutterpj/controller/login_controller.dart';
 import 'package:flutterpj/view/login/login_screen.dart';
@@ -53,9 +50,6 @@ Future<void> init() async {
   sl.registerFactory(() => BankmasukController());
   sl.registerFactory(() => BankkeluarController());
   sl.registerFactory(() => MemoController());
-  sl.registerFactory(() => HarianController());
-  sl.registerFactory(() => BoronganController());
-  sl.registerFactory(() => KikJahitController());
   sl.registerFactory(() => LoginController());
 }
 
@@ -98,9 +92,6 @@ Future<void> main() async {
           ChangeNotifierProvider(
               create: (context) => sl<BankkeluarController>()),
           ChangeNotifierProvider(create: (context) => sl<MemoController>()),
-          ChangeNotifierProvider(create: (context) => sl<HarianController>()),
-          ChangeNotifierProvider(create: (context) => sl<BoronganController>()),
-          ChangeNotifierProvider(create: (context) => sl<KikJahitController>()),
           ChangeNotifierProvider(create: (context) => sl<LoginController>()),
         ],
         child: MyApp(),

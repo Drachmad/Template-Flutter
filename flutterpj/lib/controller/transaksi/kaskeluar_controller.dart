@@ -401,8 +401,7 @@ class KaskeluarController with ChangeNotifier {
 
   Future<bool> deleteKaskeluar(String no_bukti) async {
     try {
-      await m_order.delete_kaskeluar_header(no_bukti);
-      await m_order.delete_kaskeluar_detail(no_bukti);
+      await m_order.delete_kaskeluar(no_bukti);
       await selectDataPaginate(false, '');
       return true;
     } catch (e) {

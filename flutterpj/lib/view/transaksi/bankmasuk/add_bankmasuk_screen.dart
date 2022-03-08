@@ -9,7 +9,7 @@ import 'package:flutterpj/controller/transaksi/bankmasuk_controller.dart';
 import 'package:flutterpj/model/data_account.dart';
 import 'package:flutterpj/view/transaksi/bankmasuk/widget/pilih_account.dart';
 import 'package:flutterpj/view/base_widget/save_success.dart';
-import 'package:flutterpj/view/transaksi/bankmasuk/widget/add_bankmasuk_card.dart';
+import 'package:flutterpj/view/transaksi/bankmasuk/add_bankmasuk_card.dart';
 import 'package:provider/provider.dart';
 
 class AddBankMasukScreen extends StatefulWidget {
@@ -181,6 +181,7 @@ class _AddBankMasukScreenState extends State<AddBankMasukScreen> {
                                     Container(
                                       height: 40,
                                       decoration: BoxDecoration(
+                                        color: Colors.black.withAlpha(30),
                                         border: Border.all(color: GreyColor),
                                         borderRadius: BorderRadius.circular(5),
                                       ),
@@ -189,7 +190,7 @@ class _AddBankMasukScreenState extends State<AddBankMasukScreen> {
                                       child: TextFormField(
                                         controller: bankmasukController
                                             .nobuktiController,
-                                        readOnly: widget.isModeEdit,
+                                        readOnly: true,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(
                                               top: 18, bottom: 18),
@@ -311,7 +312,7 @@ class _AddBankMasukScreenState extends State<AddBankMasukScreen> {
                                       child: TextFormField(
                                         controller:
                                             bankmasukController.bacnoController,
-                                        readOnly: widget.isModeEdit,
+                                        readOnly: true,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(
                                               top: 18, bottom: 18),
@@ -431,7 +432,7 @@ class _AddBankMasukScreenState extends State<AddBankMasukScreen> {
                                       child: TextFormField(
                                         controller: bankmasukController
                                             .keteranganController,
-                                        // readOnly: widget.isModeEdit,
+                                        // readOnly: true,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(
                                               top: 18, bottom: 18),

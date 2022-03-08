@@ -401,8 +401,7 @@ class BankkeluarController with ChangeNotifier {
 
   Future<bool> deleteBankkeluar(String no_bukti) async {
     try {
-      await m_order.delete_bankkeluar_header(no_bukti);
-      await m_order.delete_bankkeluar_detail(no_bukti);
+      await m_order.delete_bankkeluar(no_bukti);
       await selectDataPaginate(false, '');
       return true;
     } catch (e) {

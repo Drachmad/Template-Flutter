@@ -8,9 +8,6 @@ import 'package:flutterpj/view/laporan/absen_lemburan/absen_lemburan_screen.dart
 import 'package:flutterpj/view/laporan/lembur_harian/lembur_harian_screen.dart';
 import 'package:flutterpj/view/laporan/lembur_borongan/lembur_borongan_screen.dart';
 import 'package:flutterpj/view/laporan/lembur_perjam/lembur_perjam_screen.dart';
-import 'package:flutterpj/view/transaksi/harian/harian_screen.dart';
-import 'package:flutterpj/view/transaksi/borongan/borongan_screen.dart';
-import 'package:flutterpj/view/transaksi/kik_jahit/kik_jahit_screen.dart';
 import 'package:flutterpj/view/transaksi/kasmasuk/kasmasuk_screen.dart';
 import 'package:flutterpj/view/transaksi/kaskeluar/kaskeluar_screen.dart';
 import 'package:flutterpj/view/transaksi/bankmasuk/bankmasuk_screen.dart';
@@ -472,21 +469,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SizedBox(
                                   width: 16,
                                 ),
-                                Text("HARIAN"),
-                              ],
-                            ),
-                            value: 301,
-                          ),
-                          PopupMenuItem(
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  "assets/images/ic_more.png",
-                                  height: 20,
-                                ),
-                                SizedBox(
-                                  width: 16,
-                                ),
                                 Text("KAS MASUK"),
                               ],
                             ),
@@ -552,81 +534,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             value: 306,
                           ),
-                          PopupMenuItem(
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  "assets/images/ic_more.png",
-                                  height: 20,
-                                ),
-                                SizedBox(
-                                  width: 16,
-                                ),
-                                Text("BORONGAN"),
-                              ],
-                            ),
-                            value: 307,
-                          ),
-                          PopupMenuItem(
-                            padding: EdgeInsets.symmetric(horizontal: 0),
-                            child: PopupMenuButton(
-                              offset: const Offset(0, 50),
-                              color: Colors.white,
-                              child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 16),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/ic_more.png",
-                                      height: 20,
-                                    ),
-                                    SizedBox(
-                                      width: 16,
-                                      height: 50,
-                                    ),
-                                    Text("KIK"),
-                                  ],
-                                ),
-                              ),
-                              elevation: 4,
-                              itemBuilder: (context) {
-                                return [
-                                  PopupMenuItem(
-                                    child: Row(
-                                      children: [
-                                        Image.asset(
-                                          "assets/images/ic_more.png",
-                                          height: 20,
-                                        ),
-                                        SizedBox(
-                                          width: 16,
-                                        ),
-                                        Text("JAHIT"),
-                                      ],
-                                    ),
-                                    value: 308,
-                                  ),
-                                ];
-                              },
-                              onSelected: (value) async {
-                                if (value == 308) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) => KikJahitScreen()));
-                                }
-                              },
-                            ),
-                          ),
                         ];
                       },
                       onSelected: (value) async {
-                        if (value == 301) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => HarianScreen()));
-                        } else if (value == 302) {
+                        if (value == 302) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -649,17 +560,39 @@ class _HomeScreenState extends State<HomeScreen> {
                         } else if (value == 306) {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (_) => MemoScreen()));
-                        } else if (value == 307) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => BoronganScreen()));
                         }
                       },
                     ),
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              width: 256,
+            ),
+            Container(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image(
+                    image: AssetImage("assets/images/ic_tanggal.png"),
+                    height: 30,
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    "PERIODE",
+                    style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: HijauColor),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 16,
             ),
             Container(
               child: Row(

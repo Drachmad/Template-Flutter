@@ -405,8 +405,7 @@ class BankmasukController with ChangeNotifier {
 
   Future<bool> deleteBankmasuk(String no_bukti) async {
     try {
-      await m_order.delete_bankmasuk_header(no_bukti);
-      await m_order.delete_bankmasuk_detail(no_bukti);
+      await m_order.delete_bankmasuk(no_bukti);
       await selectDataPaginate(false, '');
       return true;
     } catch (e) {

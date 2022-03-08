@@ -56,10 +56,11 @@ class model_memo {
           "nobukti": data_insert['no_bukti'].toString(),
           "tgl": data_insert['tanggal'].toString(),
           "per": "01/2022",
-          "FLAG": FLAG,
+          "flag": FLAG,
           "ket": data_insert['keterangan'].toString(),
           "user": LoginController().nama_staff.toString(),
-          "jumlah": data_insert['sumjumlah'].toString(),
+          "debet": data_insert['debet'].toString(),
+          "kredit": data_insert['kredit'].toString(),
         },
       );
 
@@ -74,11 +75,12 @@ class model_memo {
             "rec": (i + 1).toString(),
             "nobukti": data_insert['no_bukti'].toString(),
             "per": "01/2022",
-            "FLAG": FLAG,
+            "flag": FLAG,
             "acno": data_detail[i]['acno'].toString(),
             "nacno": data_detail[i]['nacno'].toString(),
             "uraian": data_detail[i]['uraian'].toString(),
-            "jumlah": data_detail[i]['jumlah'].toString(),
+            "debet": data_detail[i]['debet'].toString(),
+            "kredit": data_detail[i]['kredit'].toString(),
           },
         );
       }
@@ -107,7 +109,8 @@ class model_memo {
           "tgl": data_insert['tanggal'].toString(),
           "ket": data_insert['keterangan'].toString(),
           "user": LoginController().nama_staff.toString(),
-          "jumlah": data_insert['sumjumlah'].toString(),
+          "debet": data_insert['debet'].toString(),
+          "kredit": data_insert['kredit'].toString(),
         },
       );
 
@@ -122,11 +125,12 @@ class model_memo {
             "rec": (i + 1).toString(),
             "nobukti": data_insert['no_bukti'].toString(),
             "per": "01/2022",
-            "FLAG": FLAG,
+            "flag": FLAG,
             "acno": data_detail[i]['acno'].toString(),
             "nacno": data_detail[i]['nacno'].toString(),
             "uraian": data_detail[i]['uraian'].toString(),
-            "jumlah": data_detail[i]['jumlah'].toString(),
+            "debet": data_detail[i]['debet'].toString(),
+            "kredit": data_detail[i]['kredit'].toString(),
           },
         );
       }
@@ -154,21 +158,20 @@ class model_memo {
     return results2['data'].toList();
   }
 
-  Future<List> delete_memo_header(String no_bukti) async {
-    final response = await http.post(
-      Uri.parse("${baseUrl}:3000/hapus_header_memo"),
-      body: {"no_bukti": no_bukti},
-    );
-    var results2 = json.decode(response.body);
-    return results2['data'].toList();
-  }
-
-  Future<List> delete_memo_detail(String no_bukti) async {
-    final response = await http.post(
-      Uri.parse("${baseUrl}:3000/hapus_detail_memo"),
-      body: {"no_bukti": no_bukti},
-    );
-    var results2 = json.decode(response.body);
-    return results2['data'].toList();
+  Future<bool> delete_memo(String no_bukti) async {
+    try {
+      // Hapus Header
+      await http.post(
+        Uri.parse("${baseUrl}:3000/hapus_header_memo"),
+        body: {"no_bukti": no_bukti},
+      );
+      // Hapus detail
+      await http.post(
+        Uri.parse("${baseUrl}:3000/hapus_detail_memo"),
+        body: {"no_bukti": no_bukti},
+      );
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }

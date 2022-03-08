@@ -8,7 +8,7 @@ import 'package:flutterpj/controller/transaksi/bankkeluar_controller.dart';
 import 'package:flutterpj/view/base_widget/notif_hapus.dart';
 import 'package:flutterpj/view/base_widget/toast.dart';
 import 'package:flutterpj/view/transaksi/bankkeluar/add_bankkeluar_screen.dart';
-import 'package:flutterpj/view/transaksi/bankkeluar/widget/bankkeluar_card.dart';
+import 'package:flutterpj/view/transaksi/bankkeluar/bankkeluar_card.dart';
 import 'package:provider/provider.dart';
 
 import 'widget/filter_tanggal.dart';

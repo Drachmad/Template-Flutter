@@ -400,8 +400,7 @@ class KasmasukController with ChangeNotifier {
 
   Future<bool> deleteKasmasuk(String no_bukti) async {
     try {
-      await m_order.delete_kasmasuk_header(no_bukti);
-      await m_order.delete_kasmasuk_detail(no_bukti);
+      await m_order.delete_kasmasuk(no_bukti);
       await selectDataPaginate(false, '');
       return true;
     } catch (e) {

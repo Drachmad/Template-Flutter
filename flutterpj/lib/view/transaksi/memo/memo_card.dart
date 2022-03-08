@@ -12,8 +12,9 @@ import 'package:provider/provider.dart';
 Widget MemoCard(int index, {Function pressEdit, Function pressDelete}) {
   return Consumer<MemoController>(builder: (context, memoController, child) {
     var data_so = memoController.data_memo_list[index];
-    String tanggal =
-        DateFormat('dd/MM/yyyy').format(DateTime.parse(data_so['TGL']));
+    DateTime date = DateTime.parse(data_so['TGL']);
+    var newDate = new DateTime(date.year, date.month, date.day + 1);
+    String tanggal = DateFormat('dd/MM/yyyy').format(newDate);
     String nobukti = data_so['NO_BUKTI'];
     String ket = data_so['KET'];
     String cash = data_so['PER'].toString();

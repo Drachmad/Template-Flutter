@@ -1065,9 +1065,22 @@ exports.count_kaskeluar_paginate = function (req, res) {
         });
 }
 
-exports.nobukti_kas = function (req, res) {
-    var cari = '%' + req.body.cari + '%';
-    connection.query("SELECT no_bukti FROM kas where TGL like ?", [cari], function (error, rows, fields) {
+exports.nobukti_kasmasuk = function (req, res) {
+    var tgl = '%' + req.body.tgl + '%';
+    connection.query("SELECT NO_BUKTI FROM kas where TYPE='BKM' AND TGL like ?", [tgl], function (error, rows, fields) {
+        if (error) {
+            console.log(error);
+        } else {
+
+            response.ok(rows, res);
+
+        }
+    });
+};
+
+exports.nobukti_kaskeluar = function (req, res) {
+    var tgl = '%' + req.body.tgl + '%';
+    connection.query("SELECT NO_BUKTI FROM kas where TYPE='BKK' AND TGL like ?", [tgl], function (error, rows, fields) {
         if (error) {
             console.log(error);
         } else {
@@ -1221,7 +1234,7 @@ exports.bankkeluar_paginate = function (req, res) {
     });
 };
 
-///paginate Kas Masuk
+///paginate Bank Keluar
 exports.count_bankkeluar_paginate = function (req, res) {
     var filter_cari = '%' + req.body.cari + '%';
     var tgl_awal = req.body.tglawal;
@@ -1236,9 +1249,22 @@ exports.count_bankkeluar_paginate = function (req, res) {
         });
 }
 
-exports.nobukti_bank = function (req, res) {
-    var cari = '%' + req.body.cari + '%';
-    connection.query("SELECT no_bukti FROM bank where TGL like ?", [cari], function (error, rows, fields) {
+exports.nobukti_bankmasuk = function (req, res) {
+    var tgl = '%' + req.body.tgl + '%';
+    connection.query("SELECT no_bukti FROM bank where TYPE='BBM' AND TGL like ?", [tgl], function (error, rows, fields) {
+        if (error) {
+            console.log(error);
+        } else {
+
+            response.ok(rows, res);
+
+        }
+    });
+};
+
+exports.nobukti_bankkeluar = function (req, res) {
+    var tgl = '%' + req.body.tgl + '%';
+    connection.query("SELECT no_bukti FROM bank where TYPE='BBK' AND TGL like ?", [tgl], function (error, rows, fields) {
         if (error) {
             console.log(error);
         } else {
@@ -1313,6 +1339,34 @@ exports.edit_header_bank = function (req, res) {
         });
 };
 
+exports.hapus_header_bank = function (req, res) {
+    var NO_BUKTI = req.body.no_bukti;
+    connection.query("DELETE FROM bank WHERE NO_BUKTI = ?", [NO_BUKTI],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+
+                response.ok('Berhasil Hapus Kas Header', res);
+
+            }
+        });
+};
+
+exports.hapus_detail_bank = function (req, res) {
+    var NO_BUKTI = req.body.no_bukti;
+    connection.query("DELETE FROM bankd WHERE NO_BUKTI = ?", [NO_BUKTI],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+
+                response.ok('Berhasil Hapus Kas Detail', res);
+
+            }
+        });
+};
+
 
 ///TRANSAKSI HEADER DETAIL MEMO
 ///HEADER
@@ -1349,8 +1403,8 @@ exports.count_memo_paginate = function (req, res) {
 }
 
 exports.nobukti_memo = function (req, res) {
-    var cari = '%' + req.body.cari + '%';
-    connection.query("SELECT no_bukti FROM memo where TGL like ?", [cari], function (error, rows, fields) {
+    var tgl = '%' + req.body.tgl + '%';
+    connection.query("SELECT no_bukti FROM memo where FLAG = 'BL' AND TGL like ?", [tgl], function (error, rows, fields) {
         if (error) {
             console.log(error);
         } else {
@@ -1365,11 +1419,12 @@ exports.tambah_header_memo = function (req, res) {
     var NO_BUKTI = req.body.nobukti;
     var TANGGAL = req.body.tgl;
     var PER = req.body.per;
-    var TIPE = req.body.tipe;
     var KET = req.body.ket;
+    var FLAG = req.body.flag;
     var USER = req.body.user;
-    var JUMLAH = Number(req.body.jumlah);
-    connection.query("insert into memo (NO_BUKTI,TGL,PER,TYPE,KET,USRNM,JUMLAH) values (?,?,?,?,?,?,?)", [NO_BUKTI, TANGGAL, PER, TIPE, KET, USER, JUMLAH],
+    var DEBET = Number(req.body.debet);
+    var KREDIT = Number(req.body.kredit);
+    connection.query("insert into memo (NO_BUKTI,TGL,PER,KET,FLAG,USRNM,DEBET,KREDIT) values (?,?,?,?,?,?,?,?)", [NO_BUKTI, TANGGAL, PER, KET, FLAG, USER, DEBET, KREDIT],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);
@@ -1386,11 +1441,13 @@ exports.tambah_detail_memo = function (req, res) {
     var REC = req.body.rec;
     var NO_BUKTI = req.body.nobukti;
     var PER = req.body.per;
+    var FLAG = req.body.flag;
     var ACNO = req.body.acno;
     var NACNO = req.body.nacno;
     var URAIAN = req.body.uraian;
-    var JUMLAH = Number(req.body.jumlah);
-    connection.query("insert into memod (REC,NO_BUKTI,PER,ACNO,NACNO,URAIAN,JUMLAH) values (?,?,?,?,?,?,?)", [REC, NO_BUKTI, PER, ACNO, NACNO, URAIAN, JUMLAH],
+    var DEBET = Number(req.body.debet);
+    var KREDIT = Number(req.body.kredit);
+    connection.query("insert into memod (REC,NO_BUKTI,PER,FLAG,ACNO,NACNO,URAIAN,DEBET,KREDIT) values (?,?,?,?,?,?,?,?,?)", [REC, NO_BUKTI, PER, FLAG, ACNO, NACNO, URAIAN, DEBET, KREDIT],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);
@@ -1407,14 +1464,41 @@ exports.edit_header_memo = function (req, res) {
     var TANGGAL = req.body.tgl;
     var KET = req.body.ket;
     var USER = req.body.user;
-    var JUMLAH = Number(req.body.jumlah);
-    connection.query("UPDATE memo set TGL=?,KET=?,USRNM=?,JUMLAH=? WHERE NO_BUKTI=?", [TANGGAL, KET, USER, JUMLAH, NO_BUKTI],
+    connection.query("UPDATE memo set TGL=?,KET=?,USRNM=? WHERE NO_BUKTI=?", [TANGGAL, KET, USER, NO_BUKTI],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);
             } else {
 
                 response.ok('Berhasil Edit memo Header', res);
+
+            }
+        });
+};
+
+exports.hapus_header_memo = function (req, res) {
+    var NO_BUKTI = req.body.no_bukti;
+    connection.query("DELETE FROM memo WHERE NO_BUKTI = ?", [NO_BUKTI],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+
+                response.ok('Berhasil Hapus Kas Header', res);
+
+            }
+        });
+};
+
+exports.hapus_detail_memo = function (req, res) {
+    var NO_BUKTI = req.body.no_bukti;
+    connection.query("DELETE FROM memod WHERE NO_BUKTI = ?", [NO_BUKTI],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+
+                response.ok('Berhasil Hapus Kas Detail', res);
 
             }
         });
@@ -1479,22 +1563,22 @@ exports.modal_acc_bank = function (req, res) {
     };
 };
 
-///NO BUKTI OTOMATIS
-exports.no_urut = function (req, res) {
-    var jenis = req.body.tipe;
-    var tabelx = req.body.tabel;
-    var kolomx = req.body.kolom;
-    // var filter_cari = '%'+req.body.cari+'%';
-    connection.query("SELECT right(coalesce(MAX(??),0),4) as NOMOR from ?? where left(??,2)=?", [kolomx, tabelx, kolomx, jenis],
-        function (error, rows, fields) {
-            if (error) {
-                console.log(error);
-            } else {
-                response.ok(rows, res);
+// ///NO BUKTI OTOMATIS
+// exports.no_urut = function (req, res) {
+//     var jenis = req.body.tipe;
+//     var tabelx = req.body.tabel;
+//     var kolomx = req.body.kolom;
+//     // var filter_cari = '%'+req.body.cari+'%';
+//     connection.query("SELECT right(coalesce(MAX(??),0),4) as NOMOR from ?? where left(??,2)=?", [kolomx, tabelx, kolomx, jenis],
+//         function (error, rows, fields) {
+//             if (error) {
+//                 console.log(error);
+//             } else {
+//                 response.ok(rows, res);
 
-            }
-        });
-}
+//             }
+//         });
+// }
 
 ///CHECK NO BUKTI
 exports.check_no_bukti = function (req, res) {

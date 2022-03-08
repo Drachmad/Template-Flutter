@@ -144,7 +144,7 @@ class model_kaskeluar {
 
   Future<List> nobukti_kas(String tgl) async {
     final response = await http.post(
-      Uri.parse("${baseUrl}:3000/nobukti_kas"),
+      Uri.parse("${baseUrl}:3000/nobukti_kaskeluar"),
       body: {"tgl": tgl},
     );
     var results2 = json.decode(response.body);
@@ -170,12 +170,20 @@ class model_kaskeluar {
     return results2['data'].toList();
   }
 
-  Future<List> delete_kaskeluar_detail(String no_bukti) async {
-    final response = await http.post(
-      Uri.parse("${baseUrl}:3000/hapus_detail_kas"),
-      body: {"no_bukti": no_bukti},
-    );
-    var results2 = json.decode(response.body);
-    return results2['data'].toList();
+  Future<bool> delete_kaskeluar(String no_bukti) async {
+    try {
+      // Hapus Header
+      await http.post(
+        Uri.parse("${baseUrl}:3000/hapus_header_kaskeluar"),
+        body: {"no_bukti": no_bukti},
+      );
+      // Hapus detail
+      await http.post(
+        Uri.parse("${baseUrl}:3000/hapus_detail_kaskeluar"),
+        body: {"no_bukti": no_bukti},
+      );
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }

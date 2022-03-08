@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:flutterpj/config/config.dart';
 import 'package:flutterpj/model/model_login.dart';
 import 'package:flutterpj/model/data_account.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -234,9 +233,8 @@ class MemoController with ChangeNotifier {
   TextEditingController nobuktiController = TextEditingController();
   TextEditingController tanggalController = TextEditingController();
   TextEditingController keteranganController = TextEditingController();
-  final format_tanggal = new DateFormat("d-M-y");
-  final format_created_at = DateFormat("yyyy-MM-dd hh:mm:ss", "id_ID");
-  final format_created_at2 = DateFormat("yyyy-MM", "id_ID");
+  final format_tanggal = new DateFormat("dd-MM-yyyy");
+  final format_created_at = DateFormat("yyyy-MM", "id_ID");
   final format_no_bukti = DateFormat("yyMM", "id_ID");
   DateTime chooseDate = DateTime.now();
   String tanggal;
@@ -256,7 +254,7 @@ class MemoController with ChangeNotifier {
     sumDebet = 0;
     sumKredit = 0;
     await m_order
-        .nobukti_memo(format_created_at2.format(DateTime.now()))
+        .nobukti_memo(format_created_at.format(DateTime.now()))
         .then((value) {
       if (value != null) {
         if (value.length > 0) {
@@ -280,8 +278,9 @@ class MemoController with ChangeNotifier {
 
   Future<void> initData_editMemo(var data_edit) async {
     nobuktiController.text = data_edit['NO_BUKTI'];
-    chooseDate = DateTime.parse(data_edit['TGL']);
-    tanggalController.text = format_tanggal.format(chooseDate);
+    DateTime date = DateTime.parse(data_edit['TGL']);
+    var newDate = new DateTime(date.year, date.month, date.day + 1);
+    tanggalController.text = format_tanggal.format(newDate);
     keteranganController.text = data_edit['KET'];
     // chooseDate = DateFormat("yyyy-MM-dd").parse(data_edit['TGL']);
     // status_memo = data_edit['POSTED'] == 1 ? true : false;
@@ -392,8 +391,7 @@ class MemoController with ChangeNotifier {
 
   Future<bool> deleteMemo(String no_bukti) async {
     try {
-      await m_order.delete_memo_header(no_bukti);
-      await m_order.delete_memo_detail(no_bukti);
+      await m_order.delete_memo(no_bukti);
       await selectDataPaginate(false, '');
       return true;
     } catch (e) {

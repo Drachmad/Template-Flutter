@@ -141,7 +141,7 @@ class model_bankkeluar {
 
   Future<List> nobukti_bank(String tgl) async {
     final response = await http.post(
-      Uri.parse("${baseUrl}:3000/nobukti_bank"),
+      Uri.parse("${baseUrl}:3000/nobukti_bankkeluar"),
       body: {"tgl": tgl},
     );
     var results2 = json.decode(response.body);
@@ -158,21 +158,20 @@ class model_bankkeluar {
     return results2['data'].toList();
   }
 
-  Future<List> delete_bankkeluar_header(String no_bukti) async {
-    final response = await http.post(
-      Uri.parse("${baseUrl}:3000/hapus_header_bank"),
-      body: {"no_bukti": no_bukti},
-    );
-    var results2 = json.decode(response.body);
-    return results2['data'].toList();
-  }
-
-  Future<List> delete_bankkeluar_detail(String no_bukti) async {
-    final response = await http.post(
-      Uri.parse("${baseUrl}:3000/hapus_detail_bank"),
-      body: {"no_bukti": no_bukti},
-    );
-    var results2 = json.decode(response.body);
-    return results2['data'].toList();
+  Future<bool> delete_bankkeluar(String no_bukti) async {
+    try {
+      // Hapus Header
+      await http.post(
+        Uri.parse("${baseUrl}:3000/hapus_header_bankkeluar"),
+        body: {"no_bukti": no_bukti},
+      );
+      // Hapus detail
+      await http.post(
+        Uri.parse("${baseUrl}:3000/hapus_detail_bankkeluar"),
+        body: {"no_bukti": no_bukti},
+      );
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }

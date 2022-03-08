@@ -147,8 +147,10 @@ module.exports = function (app) {
         .post(jsonku.count_kaskeluar_paginate);
     app.route('/tambah_header_kas')
         .post(jsonku.tambah_header_kas);
-    app.route('/nobukti_kas')
-        .post(jsonku.nobukti_kas);
+    app.route('/nobukti_kasmasuk')
+        .post(jsonku.nobukti_kasmasuk);
+    app.route('/nobukti_kaskeluar')
+        .post(jsonku.nobukti_kaskeluar);
     app.route('/tambah_detail_kas')
         .post(jsonku.tambah_detail_kas);
     app.route('/edit_header_kas')
@@ -166,14 +168,20 @@ module.exports = function (app) {
         .post(jsonku.bankkeluar_paginate);
     app.route('/count_bankkeluar_paginate')
         .post(jsonku.count_bankkeluar_paginate);
-    app.route('/nobukti_bank')
-        .post(jsonku.nobukti_bank);
+    app.route('/nobukti_bankmasuk')
+        .post(jsonku.nobukti_bankmasuk);
+    app.route('/nobukti_bankkeluar')
+        .post(jsonku.nobukti_bankkeluar);
     app.route('/tambah_header_bank')
         .post(jsonku.tambah_header_bank);
     app.route('/tambah_detail_bank')
         .post(jsonku.tambah_detail_bank);
     app.route('/edit_header_bank')
         .post(jsonku.edit_header_bank);
+    app.route('/hapus_header_bank')
+        .post(jsonku.hapus_header_bank);
+    app.route('/hapus_detail_bank')
+        .post(jsonku.hapus_detail_bank);
     ///TRANSAKSI HEADER DETAIL MEMO
     app.route('/memo_paginate')
         .post(jsonku.memo_paginate);
@@ -187,6 +195,10 @@ module.exports = function (app) {
         .post(jsonku.tambah_detail_memo);
     app.route('/edit_header_memo')
         .post(jsonku.edit_header_memo);
+    app.route('/hapus_header_memo')
+        .post(jsonku.hapus_header_memo);
+    app.route('/hapus_detail_memo')
+        .post(jsonku.hapus_detail_memo);
 
     /// MODAL
     //modal data account header kas
@@ -201,9 +213,6 @@ module.exports = function (app) {
     ///HAPUS DETAIL
     app.route('/hapus_detail')
         .post(jsonku.hapus_detail);
-    ///NO URUT
-    app.route('/no_urut')
-        .post(jsonku.no_urut);
     ///CHECK NO BUKTI
     app.route('/check_no_bukti')
         .post(jsonku.check_no_bukti);

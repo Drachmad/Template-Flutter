@@ -178,6 +178,7 @@ class _AddMemoScreenState extends State<AddMemoScreen> {
                                     Container(
                                       height: 40,
                                       decoration: BoxDecoration(
+                                        color: Colors.black.withAlpha(30),
                                         border: Border.all(color: GreyColor),
                                         borderRadius: BorderRadius.circular(5),
                                       ),
@@ -186,7 +187,7 @@ class _AddMemoScreenState extends State<AddMemoScreen> {
                                       child: TextFormField(
                                         controller:
                                             memoController.nobuktiController,
-                                        readOnly: widget.isModeEdit,
+                                        readOnly: true,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(
                                               top: 18, bottom: 18),
@@ -307,7 +308,7 @@ class _AddMemoScreenState extends State<AddMemoScreen> {
                                       child: TextFormField(
                                         controller:
                                             memoController.keteranganController,
-                                        // readOnly: widget.isModeEdit,
+                                        // readOnly: true,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.only(
                                               top: 18, bottom: 18),

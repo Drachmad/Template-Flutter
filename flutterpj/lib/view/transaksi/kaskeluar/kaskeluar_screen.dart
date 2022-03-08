@@ -5,11 +5,10 @@ import 'package:flutterpj/config/animation_custom_dialog.dart';
 import 'package:flutterpj/config/color.dart';
 import 'package:flutterpj/controller/login_controller.dart';
 import 'package:flutterpj/controller/transaksi/kaskeluar_controller.dart';
-import 'package:flutterpj/view/base_widget/mode_export.dart';
 import 'package:flutterpj/view/base_widget/notif_hapus.dart';
 import 'package:flutterpj/view/base_widget/toast.dart';
 import 'package:flutterpj/view/transaksi/kaskeluar/add_kaskeluar_screen.dart';
-import 'package:flutterpj/view/transaksi/kaskeluar/widget/kaskeluar_card.dart';
+import 'package:flutterpj/view/transaksi/kaskeluar/kaskeluar_card.dart';
 import 'package:provider/provider.dart';
 
 import 'widget/filter_tanggal.dart';
